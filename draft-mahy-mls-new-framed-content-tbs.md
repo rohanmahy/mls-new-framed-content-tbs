@@ -9,8 +9,8 @@ number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: "Security"
+workgroup: "Messaging Layer Security"
 keyword:
  - GroupContext hash
  - FramedContent
@@ -18,12 +18,12 @@ keyword:
  - efficient signing
  - deterministic signing
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  group: "Messaging Layer Security"
+  type: "Working Group"
+  mail: "mls@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/mls/"
+  github: "rohanmahy/mls-new-framed-content-tbs"
+  latest: "https://rohanmahy.github.io/mls-new-framed-content-tbs/draft-mahy-mls-new-framed-content-tbs.html"
 
 author:
  -
