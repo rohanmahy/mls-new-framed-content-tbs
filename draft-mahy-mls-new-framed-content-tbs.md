@@ -65,7 +65,9 @@ This document defines the `new_framed_content_tbs` extension.
 When present in a `LeafNode.capabilities.extensions` list, it indicates that the client supports this extension.
 When present in the `required_capabilities.extension_types` list in `GroupContext.extensions` it indicates that every member of the group MUST use the new `FramedContentTBS` structure.
 
-The `FramedContentTBS` structure is replaced with the new structure below. The only change is that the GroupContext is replaced with a hash (from the group's current MLS cipher suite) of the GroupContext.
+The `FramedContentTBS` structure is replaced with the new structure below. The only change is that the GroupContext is replaced with `context_hash`: a hash (using the current hash function from the group's MLS cipher suite) of the GroupContext.
+
+Since the `context_hash` can be cached for an entire epoch, this can result in a substantial efficiency improvement for additional messages sent during the same epoch.
 
 ~~~ tls
 context_hash = RefHash(GroupContext);
@@ -87,7 +89,10 @@ struct {
 
 # Security Considerations
 
-TODO Security
+This proposal replaces the GroupContext with the hash of the GroupContext.
+
+The primary security consequence of this change is that if a non-member is aware of the `context_hash`, but not the entire GroupContext, it can still validate member signatures.
+This may have minor privacy implications.
 
 
 # IANA Considerations
@@ -112,7 +117,3 @@ Reference: RFC XXXX
 
 --- back
 
-# Acknowledgments
-{:numbered="false"}
-
-TODO acknowledge.
