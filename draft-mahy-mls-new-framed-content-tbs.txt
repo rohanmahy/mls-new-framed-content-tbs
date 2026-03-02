@@ -3,9 +3,9 @@
 
 
 Messaging Layer Security                                         R. Mahy
-Internet-Draft                                           16 October 2025
+Internet-Draft                                              2 March 2026
 Intended status: Informational                                          
-Expires: 19 April 2026
+Expires: 3 September 2026
 
 
 A more efficient FramedContentTBS structure in Messsaging Layer Security
@@ -51,11 +51,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 April 2026.
+   This Internet-Draft will expire on 3 September 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -77,7 +77,6 @@ Table of Contents
    6.  References
      6.1.  Normative References
      6.2.  Informative References
-   Acknowledgments
    Author's Address
 
 1.  Introduction
@@ -117,8 +116,13 @@ Table of Contents
    FramedContentTBS structure.
 
    The FramedContentTBS structure is replaced with the new structure
-   below.  The only change is that the GroupContext is replaced with a
-   hash (from the group's current MLS cipher suite) of the GroupContext.
+   below.  The only change is that the GroupContext is replaced with
+   context_hash: a hash (using the current hash function from the
+   group's MLS cipher suite) of the GroupContext.
+
+   Since the context_hash can be cached for an entire epoch, this can
+   result in a substantial efficiency improvement for additional
+   messages sent during the same epoch.
 
    context_hash = RefHash(GroupContext);
 
@@ -138,7 +142,13 @@ Table of Contents
 
 4.  Security Considerations
 
-   TODO Security
+   This proposal replaces the GroupContext with the hash of the
+   GroupContext.
+
+   The primary security consequence of this change is that if a non-
+   member is aware of the context_hash, but not the entire GroupContext,
+   it can still validate member signatures.  This may have minor privacy
+   implications.
 
 5.  IANA Considerations
 
@@ -188,20 +198,16 @@ Table of Contents
               Barnes, R., Hodgson, M., Kohbrok, K., Mahy, R., Ralston,
               T., and R. Robert, "More Instant Messaging
               Interoperability (MIMI) using HTTPS and MLS", Work in
-              Progress, Internet-Draft, draft-ietf-mimi-protocol-04, 7
-              July 2025, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-mimi-protocol-04>.
+              Progress, Internet-Draft, draft-ietf-mimi-protocol-05, 20
+              October 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-mimi-protocol-05>.
 
    [I-D.mahy-mls-semiprivatemessage]
               Mahy, R., "Semi-Private Messages in the Messaging Layer
               Security (MLS) Protocol", Work in Progress, Internet-
-              Draft, draft-mahy-mls-semiprivatemessage-05, 21 April
+              Draft, draft-mahy-mls-semiprivatemessage-06, 16 October
               2025, <https://datatracker.ietf.org/doc/html/draft-mahy-
-              mls-semiprivatemessage-05>.
-
-Acknowledgments
-
-   TODO acknowledge.
+              mls-semiprivatemessage-06>.
 
 Author's Address
 
