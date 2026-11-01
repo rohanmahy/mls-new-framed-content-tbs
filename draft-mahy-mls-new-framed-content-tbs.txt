@@ -3,9 +3,9 @@
 
 
 Messaging Layer Security                                         R. Mahy
-Internet-Draft                                              2 March 2026
+Internet-Draft                                           1 November 2026
 Intended status: Informational                                          
-Expires: 3 September 2026
+Expires: 5 May 2027
 
 
 A more efficient FramedContentTBS structure in Messsaging Layer Security
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 September 2026.
+   This Internet-Draft will expire on 5 May 2027.
 
 Copyright Notice
 
@@ -93,10 +93,15 @@ Table of Contents
 
    The GroupContext only changes once per epoch, therefore it is an
    excellent candidate to pre-hash and cache for efficiency reasons.
+   Having to fetch the entire GroupContext also negatively impacts
+   mobile clients that process new messages in the background.
 
-   This document defines an a replacement for the FramedContentTBS
+   This document defines a replacement for the FramedContentTBS
    structure that uses a pre-hashed GroupContext, and an MLS extension
    for safely negotiating the use of the new struct.
+
+   This same improvement could be incorporated into the
+   SlimFramedContentTBS struct in Slim MLS [I-D.robert-mls-slim].
 
 2.  Conventions and Definitions
 
@@ -198,16 +203,22 @@ Table of Contents
               Barnes, R., Hodgson, M., Kohbrok, K., Mahy, R., Ralston,
               T., and R. Robert, "More Instant Messaging
               Interoperability (MIMI) using HTTPS and MLS", Work in
-              Progress, Internet-Draft, draft-ietf-mimi-protocol-05, 20
-              October 2025, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-mimi-protocol-05>.
+              Progress, Internet-Draft, draft-ietf-mimi-protocol-06, 25
+              April 2026, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-mimi-protocol-06>.
 
    [I-D.mahy-mls-semiprivatemessage]
               Mahy, R., "Semi-Private Messages in the Messaging Layer
               Security (MLS) Protocol", Work in Progress, Internet-
-              Draft, draft-mahy-mls-semiprivatemessage-06, 16 October
-              2025, <https://datatracker.ietf.org/doc/html/draft-mahy-
-              mls-semiprivatemessage-06>.
+              Draft, draft-mahy-mls-semiprivatemessage-08, 1 November
+              2026, <https://datatracker.ietf.org/doc/html/draft-mahy-
+              mls-semiprivatemessage-08>.
+
+   [I-D.robert-mls-slim]
+              Robert, R. and K. Kohbrok, "SlimMLS", Work in Progress,
+              Internet-Draft, draft-robert-mls-slim-01, 6 July 2026,
+              <https://datatracker.ietf.org/doc/html/draft-robert-mls-
+              slim-01>.
 
 Author's Address
 
