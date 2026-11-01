@@ -51,8 +51,11 @@ This structure contains the full GroupContext of the group, which can store a la
 (For example, in the MIMI protocol {{?I-D.ietf-mimi-protocol}} it contains the participant list for the group, which could contain thousands of URIs.)
 
 The GroupContext only changes once per epoch, therefore it is an excellent candidate to pre-hash and cache for efficiency reasons.
+Having to fetch the entire GroupContext also negatively impacts mobile clients that process new messages in the background.
 
-This document defines an a replacement for the `FramedContentTBS` structure that uses a pre-hashed GroupContext, and an MLS extension for safely negotiating the use of the new struct.
+This document defines a replacement for the `FramedContentTBS` structure that uses a pre-hashed GroupContext, and an MLS extension for safely negotiating the use of the new struct.
+
+This same improvement could be incorporated into the `SlimFramedContentTBS` struct in Slim MLS {{?I-D.robert-mls-slim}}.
 
 # Conventions and Definitions
 
